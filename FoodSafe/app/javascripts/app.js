@@ -1,13 +1,13 @@
 import "../stylesheets/app.css";
-import { default as Web3} from 'web3';
+import { default as Web3 } from 'web3';
 import { default as contract } from 'truffle-contract'
 var accounts;
 var account;
 
 window.App = {
-  start: function() {
+  start: function () {
     var self = this;
-    web3.eth.getAccounts(function(err, accs) {
+    web3.eth.getAccounts(function (err, accs) {
       if (err != null) {
         alert("There was an error fetching your accounts.");
         return;
@@ -20,11 +20,12 @@ window.App = {
 
       accounts = accs;
       account = accounts[0];
+      web3.eth.defaultAccount = account;
     });
   },
 };
 
-window.addEventListener('load', function() {
+window.addEventListener('load', function () {
   if (typeof web3 !== 'undefined') {
     console.warn("Using web3 detected from external source.  If using MetaMask, see the following link. Feel free to delete this warning. :) http://truffleframework.com/tutorials/truffle-and-metamask")
     window.web3 = new Web3(web3.currentProvider);
